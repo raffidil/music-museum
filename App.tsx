@@ -8,39 +8,30 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {
-  NavigationContainer,
-  DefaultTheme,
-  useNavigation,
-} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomePage from './src/page/Home';
+import AlbumPage from './src/page/Album';
+import Theme from './theme';
 
 export type RootStackParamList = {
   Home: undefined;
-  Album: undefined;
+  Album: {data: any};
 };
 const App = () => {
   const RootStack = createStackNavigator<RootStackParamList>();
 
-  const MyTheme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      notification: '#2a2d31',
-    },
-  };
-
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="white" hidden />
-      <NavigationContainer theme={MyTheme}>
+      <NavigationContainer theme={Theme}>
         <RootStack.Navigator
           screenOptions={{
             headerShown: false,
           }}
           initialRouteName="Home">
           <RootStack.Screen name="Home" component={HomePage} />
+          <RootStack.Screen name="Album" component={AlbumPage} />
         </RootStack.Navigator>
       </NavigationContainer>
     </>

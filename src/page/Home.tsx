@@ -1,10 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {SectionGrid} from 'react-native-super-grid';
-import AlbumCard from '../components/AlbumCard';
-
+import ItemCard from '../components/ItemCard';
+import theme from '../../theme';
 const styles = StyleSheet.create({
-  grid: {flex: 1, paddingHorizontal: 3},
+  grid: {
+    flex: 1,
+    paddingHorizontal: 3,
+  },
   root: {
     backgroundColor: 'white',
     width: '100%',
@@ -15,10 +18,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     marginTop: 24,
     paddingHorizontal: 16,
+    color: theme.colors.text,
     // textAlign: 'right',
   },
   itemContainerStyle: {
-    padding: 5,
+    padding: 7,
     // backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
@@ -32,35 +36,46 @@ const HomePage: React.FC = () => {
     {
       title: 'Artist 1',
       data: [
-        {id: 1, name: 'Album 1'},
-        {id: 2, name: 'Album 2'},
-        {id: 3, name: 'Album 3'},
-        {id: 4, name: 'Album 4'},
-      ],
-    },
-    {
-      title: 'Artist 1',
-      data: [
-        {id: 1, name: 'Album 1'},
-        {id: 2, name: 'Album 2'},
-        {id: 3, name: 'Album 3'},
-        {id: 4, name: 'Album 4'},
+        {
+          id: 1,
+          name: 'Album 1',
+          artistName: 'Artist Name',
+          type: 'album',
+          tracks: [
+            {
+              name: 'Track 1',
+              artistName: 'Artist Name specific',
+              type: 'track',
+            },
+          ],
+        },
+        {
+          id: 2,
+          name: 'Album 2',
+          type: 'album',
+          tracks: [
+            {
+              name: 'Track 1',
+              artistName: 'Artist Name specific',
+              type: 'track',
+            },
+          ],
+        },
+        {id: 3, name: 'Album 3', type: 'album'},
+        {id: 4, name: 'Single 1', type: 'single', artistName: 'Artist Name'},
       ],
     },
   ];
-  const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((item) => <AlbumCard />);
+
   return (
     <View style={styles.root}>
-      {/* <AlbumCard /> */}
       <SectionGrid
         spacing={1}
         style={styles.grid}
         itemContainerStyle={styles.itemContainerStyle}
-        itemDimension={150}
+        itemDimension={250}
         sections={sections}
-        renderItem={({item, section}) => (
-          <AlbumCard title={item.name} id={item.id} />
-        )}
+        renderItem={({item, section}) => <ItemCard data={item} />}
         renderSectionHeader={({section}) => (
           <Text style={styles.categoryTitle}>{section.title}</Text>
         )}
