@@ -1,19 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {FlatGrid} from 'react-native-super-grid';
-import ItemCard from '../components/ItemCard';
+import {View, StyleSheet} from 'react-native';
+import Header from '../components/Header';
 import theme from '../../theme';
-
-import HomeIcon from '../assets/HomeIcon';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import AlbumIcon from '../assets/AlbumIcon';
+import {useRoute} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   root: {
     backgroundColor: 'white',
     width: '100%',
     height: '100%',
-    padding: 16,
   },
   backButton: {
     padding: 16,
@@ -83,7 +78,6 @@ const styles = StyleSheet.create({
 });
 
 const AlbumPage: React.FC = () => {
-  const navigation = useNavigation();
   const route = useRoute();
   const {data} = route?.params;
 
@@ -91,35 +85,7 @@ const AlbumPage: React.FC = () => {
 
   return (
     <View style={styles.root}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}
-        activeOpacity={0.6}
-        delayPressIn={0}
-        delayPressOut={0}
-        style={styles.backButton}>
-        <HomeIcon size="27" color={theme.colors.primary} />
-        <Text style={styles.backButtonText}>Go Back To Home Page</Text>
-      </TouchableOpacity>
-      <View style={styles.InfoContainer}>
-        <View style={styles.imageContainer}>
-          <AlbumIcon size="80" color="white" />
-        </View>
-        <View style={styles.infoContentContainer}>
-          <Text style={styles.albumTitleText}>{data.name}</Text>
-          {Boolean(data.artistName) && <View style={styles.divider} />}
-          {Boolean(data.artistName) && (
-            <Text style={styles.artistTitleText}>{data.artistName}</Text>
-          )}
-        </View>
-      </View>
-      <Text style={styles.tracksTitle}>Tracks</Text>
-      <FlatGrid
-        style={styles.grid}
-        spacing={1}
-        itemDimension={250}
-        data={data.tracks}
-        renderItem={({item, section}) => <ItemCard data={item} />}
-      />
+      <Header />
     </View>
   );
 };

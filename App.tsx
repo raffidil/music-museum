@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {StatusBar} from 'react-native';
 
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomePage from './src/page/Home';
 import AlbumPage from './src/page/Album';
@@ -16,7 +9,7 @@ import Theme from './theme';
 
 export type RootStackParamList = {
   Home: undefined;
-  Album: {data: any};
+  Album: {data: any; language: 'english' | 'persian' | 'armenian'};
 };
 const App = () => {
   const RootStack = createStackNavigator<RootStackParamList>();

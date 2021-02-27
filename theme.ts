@@ -9,7 +9,13 @@ const Theme = {
     notification: '#2a2d31',
     text: '#102027',
     divider: '#90a4ae',
+    unfocused: '#888888',
     secondaryText: '#9e9e9e',
+  },
+  fonts: {
+    armenian: 'Tahoma',
+    persian: 'BNazanin',
+    english: 'Arial',
   },
 };
 

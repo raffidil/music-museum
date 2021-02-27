@@ -1,83 +1,185 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {SectionGrid} from 'react-native-super-grid';
-import ItemCard from '../components/ItemCard';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {FlatGrid} from 'react-native-super-grid';
+import ArtistItem from '../components/ArtistItem';
+import TouchableArea from '../components/TouchableArea';
+import Divider from '../components/Divider';
 import theme from '../../theme';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const styles = StyleSheet.create({
   grid: {
     flex: 1,
-    paddingHorizontal: 3,
+  },
+  gridContentContainer: {
+    paddingTop: 12,
   },
   root: {
     backgroundColor: 'white',
     width: '100%',
     height: '100%',
   },
-  categoryTitle: {
-    fontSize: 28,
-    fontFamily: 'Poppins-Bold',
-    marginTop: 24,
-    paddingHorizontal: 16,
-    color: theme.colors.text,
-    // textAlign: 'right',
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 48,
+    marginVertical: 32,
   },
-  itemContainerStyle: {
-    padding: 7,
-    // backgroundColor: 'red',
+  logo: {
+    width: 80,
+    height: 150,
+  },
+  homeIcon: {
+    height: 65,
+    width: 65,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    // width: '40%',
+    borderRadius: 40,
+    elevation: 15,
+    backgroundColor: theme.colors.primary,
+  },
+  languageSelectorContainer: {
+    flexDirection: 'column',
+    backgroundColor: 'white',
+  },
+  languageButton: {
+    width: 120,
+    height: 40,
+    backgroundColor: theme.colors.unfocused,
+    borderRadius: 50,
+    margin: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  faLang: {
+    fontFamily: theme.fonts.persian,
+    color: 'white',
+    fontSize: 22,
+  },
+  armLang: {
+    color: 'white',
+    fontSize: 19,
+    fontFamily: theme.fonts.armenian,
+  },
+  engLang: {
+    color: 'white',
+    fontFamily: theme.fonts.english,
+    fontSize: 20,
+  },
+  selectedLang: {
+    backgroundColor: theme.colors.primary,
+  },
+  title: {
+    fontSize: 32,
+    textAlign: 'center',
+    marginBottom: 12,
+    // fontWeight: '700',
   },
 });
 
 const HomePage: React.FC = () => {
-  const sections = [
-    {
-      title: 'Artist 1',
-      data: [
-        {
-          id: 1,
-          name: 'Album 1',
-          artistName: 'Artist Name',
-          type: 'album',
-          tracks: [
-            {
-              name: 'Track 1',
-              artistName: 'Artist Name specific',
-              type: 'track',
-            },
-          ],
-        },
-        {
-          id: 2,
-          name: 'Album 2',
-          type: 'album',
-          tracks: [
-            {
-              name: 'Track 1',
-              artistName: 'Artist Name specific',
-              type: 'track',
-            },
-          ],
-        },
-        {id: 3, name: 'Album 3', type: 'album'},
-        {id: 4, name: 'Single 1', type: 'single', artistName: 'Artist Name'},
-      ],
-    },
+  const [languageState, setLanguageState] = useState<
+    'english' | 'persian' | 'armenian'
+  >('persian');
+
+  const getLanguage = async () => {
+    try {
+      const value = await AsyncStorage.getItem('language');
+      console.log(value);
+
+      if (value !== null) {
+        setLanguageState(value as 'english' | 'persian' | 'armenian');
+        return value;
+      } else {
+        setLanguageState('persian');
+        setLanguage('persian');
+        return 'persian';
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  const setLanguage = async (value: 'english' | 'persian' | 'armenian') => {
+    try {
+      await AsyncStorage.setItem('language', value);
+      setLanguageState(value);
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  getLanguage();
+
+  let title = 'متن کامل';
+
+  const items = [
+    {name: 'واروژان بارتو', code: '#1abc9c'},
+    {name: 'Varujan Barto', code: '#2ecc71'},
+    {name: 'Վարուժան', code: '#3498db'},
+    {name: 'AMETHYST', code: '#9b59b6'},
+    {name: 'WET ASPHALT', code: '#34495e'},
+    {name: 'Hamik Alexarewndrian', code: '#3498db'},
+    {name: 'AMETHewrYST', code: '#9b59b6'},
+    {name: 'WET werASPHALT', code: '#34495e'},
+    {name: 'Hamik Alexanrewqrdrian', code: '#3498db'},
+    {name: 'AMETHYSrweT', code: '#9b59b6'},
+    {name: 'WET ASwrwPHALT', code: '#34495e'},
   ];
 
   return (
     <View style={styles.root}>
-      <SectionGrid
-        spacing={1}
+      <View style={styles.header}>
+        <Image style={styles.logo} source={require('../assets/Logo.png')} />
+        {/* <TouchableOpacity
+          style={styles.homeIcon}
+          activeOpacity={0.7}
+          delayPressIn={0}
+          delayPressOut={0}>
+          <HomeIcon size="32" color="white" />
+        </TouchableOpacity> */}
+        <View style={styles.languageSelectorContainer}>
+          <TouchableArea
+            onPress={() => setLanguage('persian')}
+            style={[
+              styles.languageButton,
+              languageState === 'persian' && styles.selectedLang,
+            ]}>
+            <Text style={styles.faLang}>فارسی</Text>
+          </TouchableArea>
+          <TouchableArea
+            onPress={() => setLanguage('armenian')}
+            style={[
+              styles.languageButton,
+              languageState === 'armenian' && styles.selectedLang,
+            ]}>
+            <Text style={styles.armLang}>ՀԱՅԵՐԵՆ</Text>
+          </TouchableArea>
+          <TouchableArea
+            onPress={() => setLanguage('english')}
+            style={[
+              styles.languageButton,
+              languageState === 'english' && styles.selectedLang,
+            ]}>
+            <Text style={styles.engLang}>ENGLISH</Text>
+          </TouchableArea>
+        </View>
+      </View>
+
+      <Text style={[styles.title, {fontFamily: theme.fonts[languageState]}]}>
+        {title}
+      </Text>
+
+      <Divider />
+
+      <FlatGrid
+        itemDimension={130}
+        data={items}
         style={styles.grid}
-        itemContainerStyle={styles.itemContainerStyle}
-        itemDimension={250}
-        sections={sections}
-        renderItem={({item, section}) => <ItemCard data={item} />}
-        renderSectionHeader={({section}) => (
-          <Text style={styles.categoryTitle}>{section.title}</Text>
+        contentContainerStyle={styles.gridContentContainer}
+        spacing={10}
+        renderItem={({item}) => (
+          <ArtistItem data={{title: item.name}} language={languageState} />
         )}
       />
     </View>
