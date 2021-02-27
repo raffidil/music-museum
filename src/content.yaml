@@ -15,4 +15,4 @@ albums:
           fa: FA Name
           en: EN Name
         imagePath: '/path/to/image'
-        path: '/path/to/track'
+        audioPath: '/path/to/track'

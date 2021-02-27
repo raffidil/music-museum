@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import theme from '../../theme';
+import {Album} from '../types';
 import TouchableArea from './TouchableArea';
 
 const styles = StyleSheet.create({
@@ -45,13 +46,14 @@ const styles = StyleSheet.create({
 });
 
 const ArtistItem: React.FC<{
-  data: {title?: string};
+  album: Album;
   language: 'en' | 'fa' | 'am';
-}> = ({data, language}) => {
+}> = ({album, language}) => {
   const navigation = useNavigation();
+  console.log(album);
 
   const onItemPress = () => {
-    navigation.navigate('Album', {language: language, data: data});
+    navigation.navigate('Album', {language: language, album});
   };
   return (
     <TouchableArea onPress={onItemPress} style={styles.artistContainer}>
@@ -63,7 +65,7 @@ const ArtistItem: React.FC<{
       </View>
 
       <Text style={[styles.artistName, {fontFamily: theme.fonts[language]}]}>
-        {data?.title}
+        {album?.title?.[language]}
       </Text>
     </TouchableArea>
   );

@@ -7,9 +7,9 @@ import Divider from '../components/Divider';
 import Header from '../components/Header';
 import theme from '../../theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import content from '../content.yaml';
-import RNFS from 'react-native-fs';
+import rnfs from 'react-native-fs';
 import jsYaml from 'js-yaml';
+import {Content} from '../types';
 
 const styles = StyleSheet.create({
   grid: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
 const readContent = async () => {
   try {
-    const content = await RNFS.readFile(
+    const content = await rnfs.readFile(
       '/storage/emulated/0/museum/content.yaml',
       'utf8',
     );
@@ -96,7 +96,7 @@ const readContent = async () => {
 
 const HomePage: React.FC = () => {
   const [languageState, setLanguageState] = useState<'en' | 'fa' | 'am'>('fa');
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState<Content | null>(null);
 
   useEffect(() => {
     readContent().then((res) => {
@@ -176,26 +176,26 @@ const HomePage: React.FC = () => {
                 styles.languageButton,
                 languageState === 'en' && styles.selectedLang,
               ]}>
-              <Text style={styles.engLang}>en</Text>
+              <Text style={styles.engLang}>ENGLISH</Text>
             </TouchableArea>
           </View>
         }
       />
 
       <Text style={[styles.title, {fontFamily: theme.fonts[languageState]}]}>
-        {/* {content?.homeTitle.am} */}
+        {content?.homeTitle?.[languageState]}
       </Text>
 
       <Divider />
 
       <FlatGrid
         itemDimension={130}
-        data={items}
+        data={content?.albums || []}
         style={styles.grid}
         contentContainerStyle={styles.gridContentContainer}
         spacing={10}
         renderItem={({item}) => (
-          <ArtistItem data={{title: item.name}} language={languageState} />
+          <ArtistItem album={item} language={languageState} />
         )}
       />
     </View>

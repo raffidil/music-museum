@@ -6,10 +6,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomePage from './src/page/Home';
 import AlbumPage from './src/page/Album';
 import Theme from './theme';
+import {Album} from './src/types';
 
 export type RootStackParamList = {
   Home: undefined;
-  Album: {data: any; language: 'en' | 'fa' | 'am'};
+  Album: {album: Album; language: 'en' | 'fa' | 'am'};
 };
 const App = () => {
   const RootStack = createStackNavigator<RootStackParamList>();
