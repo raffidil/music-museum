@@ -9,7 +9,7 @@ import Theme from './theme';
 
 export type RootStackParamList = {
   Home: undefined;
-  Album: {data: any; language: 'english' | 'persian' | 'armenian'};
+  Album: {data: any; language: 'en' | 'fa' | 'am'};
 };
 const App = () => {
   const RootStack = createStackNavigator<RootStackParamList>();

@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   faLang: {
-    fontFamily: theme.fonts.persian,
+    fontFamily: theme.fonts.fa,
     color: 'white',
     fontSize: 22,
   },
   armLang: {
     color: 'white',
     fontSize: 19,
-    fontFamily: theme.fonts.armenian,
+    fontFamily: theme.fonts.am,
   },
   engLang: {
     color: 'white',
-    fontFamily: theme.fonts.english,
+    fontFamily: theme.fonts.en,
     fontSize: 20,
     lineHeight: 50,
   },
@@ -95,9 +95,7 @@ const readContent = async () => {
 };
 
 const HomePage: React.FC = () => {
-  const [languageState, setLanguageState] = useState<
-    'english' | 'persian' | 'armenian'
-  >('persian');
+  const [languageState, setLanguageState] = useState<'en' | 'fa' | 'am'>('fa');
   const [content, setContent] = useState(null);
 
   useEffect(() => {
@@ -114,19 +112,19 @@ const HomePage: React.FC = () => {
       console.log(value);
 
       if (value !== null) {
-        setLanguageState(value as 'english' | 'persian' | 'armenian');
+        setLanguageState(value as 'en' | 'fa' | 'am');
         return value;
       } else {
-        setLanguageState('persian');
-        setLanguage('persian');
-        return 'persian';
+        setLanguageState('fa');
+        setLanguage('fa');
+        return 'fa';
       }
     } catch (e) {
       // error reading value
     }
   };
 
-  const setLanguage = async (value: 'english' | 'persian' | 'armenian') => {
+  const setLanguage = async (value: 'en' | 'fa' | 'am') => {
     try {
       await AsyncStorage.setItem('language', value);
       setLanguageState(value);
@@ -157,28 +155,28 @@ const HomePage: React.FC = () => {
         rightElement={
           <View style={styles.languageSelectorContainer}>
             <TouchableArea
-              onPress={() => setLanguage('persian')}
+              onPress={() => setLanguage('fa')}
               style={[
                 styles.languageButton,
-                languageState === 'persian' && styles.selectedLang,
+                languageState === 'fa' && styles.selectedLang,
               ]}>
               <Text style={styles.faLang}>فارسی</Text>
             </TouchableArea>
             <TouchableArea
-              onPress={() => setLanguage('armenian')}
+              onPress={() => setLanguage('am')}
               style={[
                 styles.languageButton,
-                languageState === 'armenian' && styles.selectedLang,
+                languageState === 'am' && styles.selectedLang,
               ]}>
               <Text style={styles.armLang}>ՀԱՅԵՐԵՆ</Text>
             </TouchableArea>
             <TouchableArea
-              onPress={() => setLanguage('english')}
+              onPress={() => setLanguage('en')}
               style={[
                 styles.languageButton,
-                languageState === 'english' && styles.selectedLang,
+                languageState === 'en' && styles.selectedLang,
               ]}>
-              <Text style={styles.engLang}>ENGLISH</Text>
+              <Text style={styles.engLang}>en</Text>
             </TouchableArea>
           </View>
         }

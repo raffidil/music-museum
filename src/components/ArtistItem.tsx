@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
 const ArtistItem: React.FC<{
   data: {title?: string};
-  language: 'english' | 'persian' | 'armenian';
+  language: 'en' | 'fa' | 'am';
 }> = ({data, language}) => {
   const navigation = useNavigation();
 

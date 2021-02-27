@@ -13,9 +13,9 @@ const Theme = {
     secondaryText: '#9e9e9e',
   },
   fonts: {
-    armenian: 'Tahoma',
-    persian: 'VazirRegular',
-    english: 'Poppins-Regular',
+    am: 'Tahoma',
+    fa: 'VazirRegular',
+    en: 'Poppins-Regular',
   },
 };
 
