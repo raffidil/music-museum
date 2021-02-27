@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import ArtistItem from '../components/ArtistItem';
 import TouchableArea from '../components/TouchableArea';
 import Divider from '../components/Divider';
+import Header from '../components/Header';
 import theme from '../../theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import content from '../content.yaml';
 
 const styles = StyleSheet.create({
   grid: {
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: theme.fonts.english,
     fontSize: 20,
+    lineHeight: 50,
   },
   selectedLang: {
     backgroundColor: theme.colors.primary,
@@ -73,7 +76,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     textAlign: 'center',
     marginBottom: 12,
-    // fontWeight: '700',
   },
 });
 
@@ -129,42 +131,36 @@ const HomePage: React.FC = () => {
 
   return (
     <View style={styles.root}>
-      <View style={styles.header}>
-        <Image style={styles.logo} source={require('../assets/Logo.png')} />
-        {/* <TouchableOpacity
-          style={styles.homeIcon}
-          activeOpacity={0.7}
-          delayPressIn={0}
-          delayPressOut={0}>
-          <HomeIcon size="32" color="white" />
-        </TouchableOpacity> */}
-        <View style={styles.languageSelectorContainer}>
-          <TouchableArea
-            onPress={() => setLanguage('persian')}
-            style={[
-              styles.languageButton,
-              languageState === 'persian' && styles.selectedLang,
-            ]}>
-            <Text style={styles.faLang}>فارسی</Text>
-          </TouchableArea>
-          <TouchableArea
-            onPress={() => setLanguage('armenian')}
-            style={[
-              styles.languageButton,
-              languageState === 'armenian' && styles.selectedLang,
-            ]}>
-            <Text style={styles.armLang}>ՀԱՅԵՐԵՆ</Text>
-          </TouchableArea>
-          <TouchableArea
-            onPress={() => setLanguage('english')}
-            style={[
-              styles.languageButton,
-              languageState === 'english' && styles.selectedLang,
-            ]}>
-            <Text style={styles.engLang}>ENGLISH</Text>
-          </TouchableArea>
-        </View>
-      </View>
+      <Header
+        rightElement={
+          <View style={styles.languageSelectorContainer}>
+            <TouchableArea
+              onPress={() => setLanguage('persian')}
+              style={[
+                styles.languageButton,
+                languageState === 'persian' && styles.selectedLang,
+              ]}>
+              <Text style={styles.faLang}>فارسی</Text>
+            </TouchableArea>
+            <TouchableArea
+              onPress={() => setLanguage('armenian')}
+              style={[
+                styles.languageButton,
+                languageState === 'armenian' && styles.selectedLang,
+              ]}>
+              <Text style={styles.armLang}>ՀԱՅԵՐԵՆ</Text>
+            </TouchableArea>
+            <TouchableArea
+              onPress={() => setLanguage('english')}
+              style={[
+                styles.languageButton,
+                languageState === 'english' && styles.selectedLang,
+              ]}>
+              <Text style={styles.engLang}>ENGLISH</Text>
+            </TouchableArea>
+          </View>
+        }
+      />
 
       <Text style={[styles.title, {fontFamily: theme.fonts[languageState]}]}>
         {title}

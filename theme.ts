@@ -14,8 +14,8 @@ const Theme = {
   },
   fonts: {
     armenian: 'Tahoma',
-    persian: 'BNazanin',
-    english: 'Arial',
+    persian: 'VazirRegular',
+    english: 'Poppins-Regular',
   },
 };
 

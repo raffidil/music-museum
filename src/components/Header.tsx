@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 48,
-    marginVertical: 32,
+    marginVertical: 24,
   },
   logo: {
     width: 80,
@@ -39,7 +39,7 @@ const HomePage: React.FC<{rightElement?: React.ReactElement}> = ({
         <TouchableArea
           style={styles.homeIcon}
           onPress={() => navigation.navigate('Home')}>
-          <HomeIcon size="32" color="white" />
+          <HomeIcon size="36" color="white" />
         </TouchableArea>
       )}
       {rightElement}

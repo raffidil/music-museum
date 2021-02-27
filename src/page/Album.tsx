@@ -2,7 +2,8 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Header from '../components/Header';
 import theme from '../../theme';
-import {useRoute} from '@react-navigation/native';
+import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '../../App';
 
 const styles = StyleSheet.create({
   root: {
@@ -77,11 +78,14 @@ const styles = StyleSheet.create({
   grid: {flex: 1},
 });
 
-const AlbumPage: React.FC = () => {
-  const route = useRoute();
-  const {data} = route?.params;
+type AlbumPageRouteProp = RouteProp<RootStackParamList, 'Album'>;
 
-  console.log(data);
+type Props = {
+  route: AlbumPageRouteProp;
+};
+
+const AlbumPage = ({route}: Props) => {
+  const {data, language} = route?.params;
 
   return (
     <View style={styles.root}>
