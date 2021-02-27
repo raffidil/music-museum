@@ -1,0 +1,18 @@
+homeTitle:
+  am: AM Title
+  fa: FA Title
+  en: EN Title
+albums:
+  - title:
+      am: AM Name
+      fa: FA Name
+      en: EN Name
+    avatarPath: '/path/to/avatar'
+    type: album # album | sound
+    tracks:
+      - title:
+          am: AM Name
+          fa: FA Name
+          en: EN Name
+        imagePath: '/path/to/image'
+        path: '/path/to/track'

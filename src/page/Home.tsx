@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import ArtistItem from '../components/ArtistItem';
@@ -8,6 +8,8 @@ import Header from '../components/Header';
 import theme from '../../theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import content from '../content.yaml';
+import RNFS from 'react-native-fs';
+import jsYaml from 'js-yaml';
 
 const styles = StyleSheet.create({
   grid: {
@@ -79,10 +81,32 @@ const styles = StyleSheet.create({
   },
 });
 
+const readContent = async () => {
+  try {
+    const content = await RNFS.readFile(
+      '/storage/emulated/0/museum/content.yaml',
+      'utf8',
+    );
+    const json = jsYaml.load(content);
+    return json;
+  } catch (err) {
+    console.error(err.message, err.code);
+  }
+};
+
 const HomePage: React.FC = () => {
   const [languageState, setLanguageState] = useState<
     'english' | 'persian' | 'armenian'
   >('persian');
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    readContent().then((res) => {
+      setContent(res);
+    });
+  }, []);
+
+  console.log('content: ', content);
 
   const getLanguage = async () => {
     try {
@@ -112,8 +136,6 @@ const HomePage: React.FC = () => {
   };
 
   getLanguage();
-
-  let title = 'متن کامل';
 
   const items = [
     {name: 'واروژان بارتو', code: '#1abc9c'},
@@ -163,7 +185,7 @@ const HomePage: React.FC = () => {
       />
 
       <Text style={[styles.title, {fontFamily: theme.fonts[languageState]}]}>
-        {title}
+        {/* {content?.homeTitle.am} */}
       </Text>
 
       <Divider />
