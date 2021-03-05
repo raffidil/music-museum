@@ -8,3 +8,6 @@ declare module '*.svg' {
 }
 
 declare module 'js-yaml';
+declare module 'react-native-track-player/lib/hooks';
+declare module 'react-native-track-player/lib/eventTypes';
+declare module 'react-native-track-player/lib/ProgressComponent';

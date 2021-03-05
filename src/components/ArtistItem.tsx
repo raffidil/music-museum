@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     width: 98,
     height: 98,
     borderRadius: 100,
-
     backgroundColor: '#ccc',
   },
   basedArtistName: {
@@ -60,7 +59,9 @@ const ArtistItem: React.FC<{
       <View style={styles.artistAvatarContainer}>
         <Image
           style={styles.artistImageContainer}
-          source={require('../assets/test.jpg')}
+          source={{
+            uri: `file:///storage/emulated/0/museum/${album?.avatarPath}`,
+          }}
         />
       </View>
 

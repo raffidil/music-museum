@@ -1,0 +1,94 @@
+homeTitle:
+  am: AM Title
+  fa: FA Title
+  en: EN Title
+albums:
+  - title:
+      am: Կամիլա Կաբելո
+      fa: کامیلا کبیو
+      en: Camila Cabello
+    avatarPath: 'data/img.jpg'
+    type: album # album | sound
+    tracks:
+      - title:
+          am: Հավանա 1
+          fa: هاوانا 1
+          en: Havana 1
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 2
+          fa: هاوانا 2
+          en: Havana 2
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 3
+          fa: هاوانا 3
+          en: Havana 3
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 4
+          fa: هاوانا 4
+          en: Havana 4
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 5
+          fa: هاوانا 5
+          en: Havana 5
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 6
+          fa: هاوانا 6
+          en: Havana 6
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 7
+          fa: هاوانا 7
+          en: Havana 7
+        imagePath: 'data/img.jpg'
+        # audioPath: 'data/havana.mp3'
+  - title:
+      am: AM Artist name 2
+      fa: FA Artist name 2
+      en: EN Artist name 2
+    type: 'sound'
+    tracks:
+      - title:
+          am: Հավանա 2
+          fa: هاوانا 2
+          en: Havana 2
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 3
+          fa: هاوانا 3
+          en: Havana 3
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 4
+          fa: هاوانا 4
+          en: Havana 4
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 5
+          fa: هاوانا 5
+          en: Havana 5
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+      - title:
+          am: Հավանա 6
+          fa: هاوانا 6
+          en: Havana 6
+        imagePath: 'data/img.jpg'
+        audioPath: 'data/havana.mp3'
+  - title:
+      am: AM Artist name 3
+      fa: FA Artist name 3
+      en: EN Artist name 3

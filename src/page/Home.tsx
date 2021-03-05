@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, PermissionsAndroid} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import ArtistItem from '../components/ArtistItem';
 import TouchableArea from '../components/TouchableArea';
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   },
   gridContentContainer: {
     paddingTop: 12,
+    alignItems: 'center',
   },
   root: {
     backgroundColor: 'white',
@@ -83,6 +84,12 @@ const styles = StyleSheet.create({
 
 const readContent = async () => {
   try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    );
+    if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+      return;
+    }
     const content = await rnfs.readFile(
       '/storage/emulated/0/museum/content.yaml',
       'utf8',
@@ -97,7 +104,6 @@ const readContent = async () => {
 const HomePage: React.FC = () => {
   const [languageState, setLanguageState] = useState<'en' | 'fa' | 'am'>('fa');
   const [content, setContent] = useState<Content | null>(null);
-
   useEffect(() => {
     readContent().then((res) => {
       setContent(res);
@@ -134,20 +140,6 @@ const HomePage: React.FC = () => {
   };
 
   getLanguage();
-
-  const items = [
-    {name: 'واروژان بارتو', code: '#1abc9c'},
-    {name: 'Varujan Barto', code: '#2ecc71'},
-    {name: 'Վարուժան', code: '#3498db'},
-    {name: 'AMETHYST', code: '#9b59b6'},
-    {name: 'WET ASPHALT', code: '#34495e'},
-    {name: 'Hamik Alexarewndrian', code: '#3498db'},
-    {name: 'AMETHewrYST', code: '#9b59b6'},
-    {name: 'WET werASPHALT', code: '#34495e'},
-    {name: 'Hamik Alexanrewqrdrian', code: '#3498db'},
-    {name: 'AMETHYSrweT', code: '#9b59b6'},
-    {name: 'WET ASwrwPHALT', code: '#34495e'},
-  ];
 
   return (
     <View style={styles.root}>
