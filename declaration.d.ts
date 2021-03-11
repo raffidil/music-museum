@@ -11,3 +11,4 @@ declare module 'js-yaml';
 declare module 'react-native-track-player/lib/hooks';
 declare module 'react-native-track-player/lib/eventTypes';
 declare module 'react-native-track-player/lib/ProgressComponent';
+declare module 'react-native-lock-task';

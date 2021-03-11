@@ -6185,6 +6185,11 @@ react-native-lock-task@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-native-lock-task/-/react-native-lock-task-1.1.0.tgz#8ba95e9d86cb71c6314a4477dd8697e5015c7973"
   integrity sha512-v9Ph+wsIoEWMUHYPX0day4AlDnpgwheQ/Y7KthP+76gEmZUAtv63MFl38UYor9XUM7e9iWj6GKMeFPfWqpurcw==
 
+react-native-navigation-bar-color@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.1.tgz#ee2be25cc37105f7da355717b0a9a32c9c059ae6"
+  integrity sha512-1kE/oxWt+HYjRxdZdvke9tJ365xaee5n3+euOQA1En8zQuSbOxiE4SYEGM7TeaWnmLJ0l37mRnPHaB2H4mGh0A==
+
 react-native-safe-area-context@^3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"

@@ -11,7 +11,7 @@ import rnfs from 'react-native-fs';
 import jsYaml from 'js-yaml';
 import {Content} from '../types';
 import RNLockTask from 'react-native-lock-task';
-
+import {hideNavigationBar} from 'react-native-navigation-bar-color';
 const styles = StyleSheet.create({
   grid: {
     flex: 1,
@@ -113,6 +113,11 @@ const HomePage: React.FC = () => {
 
   console.log('content: ', content);
 
+  useEffect(() => {
+    hideNavigationBar();
+    RNLockTask.startLockTask();
+  }, []);
+
   const getLanguage = async () => {
     try {
       const value = await AsyncStorage.getItem('language');
@@ -174,14 +179,6 @@ const HomePage: React.FC = () => {
           </View>
         }
       />
-
-      <TouchableArea onPress={() => RNLockTask.startLockTask()}>
-        <Text style={{fontSize: 42}}>Lock</Text>
-      </TouchableArea>
-
-      <TouchableArea onPress={() => RNLockTask.stopLockTask()}>
-        <Text style={{fontSize: 42}}>Unlock</Text>
-      </TouchableArea>
 
       <Text style={[styles.title, {fontFamily: theme.fonts[languageState]}]}>
         {content?.homeTitle?.[languageState]}
