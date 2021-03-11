@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MusicMuseum</string>
+  <string name="app_name">MusicMuseum</string>
+  <string name="sample_device_admin">MusicMuseum</string>
+  <string name="sample_device_admin_description">MusicMuseum</string>
 </resources>

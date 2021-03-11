@@ -6180,6 +6180,11 @@ react-native-linear-gradient@^2.5.6:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
 
+react-native-lock-task@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-lock-task/-/react-native-lock-task-1.1.0.tgz#8ba95e9d86cb71c6314a4477dd8697e5015c7973"
+  integrity sha512-v9Ph+wsIoEWMUHYPX0day4AlDnpgwheQ/Y7KthP+76gEmZUAtv63MFl38UYor9XUM7e9iWj6GKMeFPfWqpurcw==
+
 react-native-safe-area-context@^3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"
