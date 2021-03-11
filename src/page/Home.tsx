@@ -169,6 +169,11 @@ const HomePage: React.FC = () => {
               <Text style={styles.armLang}>ՀԱՅԵՐԵՆ</Text>
             </TouchableArea>
             <TouchableArea
+              onLongPress={() => {
+                console.log('device owner deactivated!');
+                RNLockTask.clearDeviceOwnerApp();
+              }}
+              delayLongPress={5000}
               onPress={() => setLanguage('en')}
               style={[
                 styles.languageButton,
