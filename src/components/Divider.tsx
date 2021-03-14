@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ArtistItem: React.FC<{style?: ViewStyle}> = ({style}) => {
+const Divider: React.FC<{style?: ViewStyle}> = ({style}) => {
   return (
     <LinearGradient
       colors={['transparent', theme.colors.unfocused, 'transparent']}
@@ -22,4 +22,4 @@ const ArtistItem: React.FC<{style?: ViewStyle}> = ({style}) => {
   );
 };
 
-export default ArtistItem;
+export default Divider;

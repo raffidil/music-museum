@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Image, Text, FlatList} from 'react-native';
+import Slider from '@react-native-community/slider';
 import Header from '../components/Header';
 import TrackCard from '../components/TrackCard';
 import theme from '../../theme';
@@ -13,6 +14,13 @@ import PauseIcon from '../assets/PauseIcon';
 import VolDownIcon from '../assets/VolDownIcon';
 import VolUpIcon from '../assets/VolUpIcon';
 import TrackPlayer from 'react-native-track-player';
+import {
+  useTrackPlayerProgress,
+  usePlaybackState,
+} from 'react-native-track-player/lib/hooks';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+dayjs.extend(duration);
 
 import {Track} from '../types';
 
@@ -67,6 +75,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   divider: {marginTop: 24},
+  bigDivider: {
+    marginTop: 24,
+    width: '95%',
+  },
   infoDivider: {
     marginVertical: 8,
     width: '100%',
@@ -92,6 +104,13 @@ const styles = StyleSheet.create({
   singlePlaybackController: {
     marginBottom: 16,
   },
+  seekerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  slider: {width: '80%', height: 40},
+  time: {color: theme.colors.secondaryText},
 });
 
 type AlbumPageRouteProp = RouteProp<RootStackParamList, 'Album'>;
@@ -106,6 +125,12 @@ const AlbumPage = ({route}: Props) => {
   const [playerState, setPlayerState] = useState<'playing' | 'paused' | 'idle'>(
     'idle',
   );
+
+  const progress = useTrackPlayerProgress(500);
+  const state = usePlaybackState();
+
+  console.log('progress: ', progress);
+  console.log('state: ', state);
 
   useEffect(() => {
     TrackPlayer.setupPlayer().then(() => {
@@ -124,12 +149,15 @@ const AlbumPage = ({route}: Props) => {
           case 2:
             setPlayerState('paused');
             break;
-          // case 1:
-          //   setPlayerState('idle');
-          //   break;
+          case 1:
+            setPlayerState('idle');
+            break;
+          case 8:
+            setPlayerState('idle');
+            break;
 
           default:
-            setPlayerState('idle');
+            // setPlayerState('idle');
             break;
         }
 
@@ -233,10 +261,32 @@ const AlbumPage = ({route}: Props) => {
                 </TouchableArea>
               </View>
             )}
+            {showPlayback && (
+              <View style={styles.seekerContainer}>
+                <Text style={styles.time}>
+                  {dayjs.duration(progress.position * 1000).format('mm:ss')}
+                </Text>
+                <Slider
+                  style={styles.slider}
+                  minimumValue={0}
+                  maximumValue={progress.duration}
+                  value={progress.position}
+                  onValueChange={(state) => {
+                    TrackPlayer.seekTo(state);
+                  }}
+                  minimumTrackTintColor={theme.colors.primary}
+                  thumbTintColor={theme.colors.primary}
+                  maximumTrackTintColor="#000000"
+                />
+                <Text style={styles.time}>
+                  {dayjs.duration(progress.duration * 1000).format('mm:ss')}
+                </Text>
+              </View>
+            )}
           </View>
         </View>
       )}
-      {album?.type !== 'sound' && <Divider style={styles.divider} />}
+      {album?.type !== 'sound' && <Divider style={styles.bigDivider} />}
       {album?.type !== 'sound' && (
         <FlatList
           style={styles.flatList}
