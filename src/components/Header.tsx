@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   logo: {
-    width: 80,
-    height: 150,
+    width: 100,
+    height: 152,
   },
   homeIcon: {
     height: 65,
@@ -49,7 +49,10 @@ const HomePage: React.FC<{rightElement?: React.ReactElement}> = ({
         delayPressOut={0}
         delayLongPress={5000}
         onLongPress={exitKioskMode}>
-        <Image style={styles.logo} source={require('../assets/Logo.png')} />
+        <Image
+          style={styles.logo}
+          source={require('../assets/LogoTextless.png')}
+        />
       </TouchableOpacity>
       {!rightElement && (
         <TouchableArea
