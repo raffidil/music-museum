@@ -11,12 +11,13 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 48,
+    marginHorizontal: 40,
     marginVertical: 24,
   },
   logo: {
     width: 100,
     height: 152,
+    marginLeft: 24,
   },
   homeIcon: {
     height: 65,

@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   artistAvatarContainer: {
-    width: 110,
-    height: 110,
+    width: 130,
+    height: 130,
     borderRadius: 100,
     borderColor: theme.colors.primary,
     borderWidth: 2,
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   artistImageContainer: {
-    width: 98,
-    height: 98,
+    width: 118,
+    height: 118,
     borderRadius: 100,
     backgroundColor: '#ccc',
   },

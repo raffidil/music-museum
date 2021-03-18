@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   languageButton: {
-    width: 120,
+    width: 140,
     height: 40,
     backgroundColor: theme.colors.unfocused,
     borderRadius: 50,
