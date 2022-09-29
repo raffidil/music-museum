@@ -27,6 +27,7 @@ npm install
 ```sh
 npm run android
 ```
+Copy the `museum` folder ([from here](https://github.com/raffidil/music-museum/tree/main/src/sample)) to the Android internal storage directory, and modify the `content.yaml`.
 
 ## Build for Android
 
